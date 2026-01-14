@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Bubble - Productos de Limpieza</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header estilo Mercadona */
+        header {
+            background: white;
+            border-bottom: 3px solid #9b59b6;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #9b59b6;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: #e91e63;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: #9b59b6;
+        }
+
+        /* Hero Banner estilo Mercadona */
+        .hero {
+            background: linear-gradient(135deg, #e8d5f0 0%, #fce4ec 100%);
+            padding: 120px 2rem 60px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #9b59b6;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .hero-feature i {
+            color: #9b59b6;
+            font-size: 1.5rem;
+        }
+
+        /* Categorías estilo Mercadona */
+        .categorias {
+            padding: 60px 2rem;
+            background: white;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #333;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .categorias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .categoria-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .categoria-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(155, 89, 182, 0.2);
+            border-color: #e91e63;
+        }
+
+        .categoria-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #e91e63;
+        }
+
+        .categoria-card h3 {
+            color: #9b59b6;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .categoria-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Productos destacados */
+        .productos-destacados {
+            padding: 60px 2rem;
+            background: #f8f9fa;
+        }
+
+        .productos-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .producto-item {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .producto-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .producto-item i {
+            font-size: 3rem;
+            color: #e91e63;
+            margin-bottom: 1rem;
+        }
+
+        .producto-item h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .precio {
+            color: #9b59b6;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        /* Sobre nosotros estilo Mercadona */
+        .sobre-nosotros {
+            padding: 60px 2rem;
+            background: white;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .sobre-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .sobre-texto h2 {
+            color: #9b59b6;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .sobre-texto p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .valores {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .valor-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .valor-item i {
+            color: #e91e63;
+            font-size: 1.5rem;
+            margin-top: 0.2rem;
+        }
+
+        .valor-item div h4 {
+            color: #9b59b6;
+            margin-bottom: 0.3rem;
+        }
+
+        .valor-item div p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Contacto estilo Mercadona */
+        .contacto {
+            padding: 60px 2rem;
+            background: #f8f9fa;
+        }
+
+        .contacto-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contacto-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .contacto-card i {
+            font-size: 3rem;
+            color: #e91e63;
+            margin-bottom: 1rem;
+        }
+
+        .contacto-card h3 {
+            color: #9b59b6;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contacto-card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .contacto-card a {
+            color: #9b59b6;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .contacto-card a:hover {
+            color: #e91e63;
+        }
+
+        /* Redes sociales */
+        .redes-sociales {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .redes-sociales h3 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: white;
+            color: #9b59b6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #9b59b6;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Footer estilo Mercadona */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* WhatsApp flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-features {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .sobre-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .valores {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-shopping-basket"></i>
+                BIG BUBBLE
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#categorias">Categorías</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+        <h1>BIG BUBBLE</h1>
+        <p>Tu tienda de confianza para productos de limpieza del hogar y cuidado personal</p>
+        <div class="hero-features">
+            <div class="hero-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Calidad garantizada</span>
+            </div>
+            <div class="hero-feature">
+                <i class="fas fa-tag"></i>
+                <span>Mejores precios</span>
+            </div>
+            <div class="hero-feature">
+                <i class="fas fa-truck"></i>
+                <span>Entrega rápida</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categorías -->
+    <section class="categorias" id="categorias">
+        <h2 class="section-title">Nuestras Categorías</h2>
+        <div class="categorias-grid">
+            <div class="categoria-card">
+                <div class="categoria-icon">
+                    <i class="fas fa-spray-can"></i>
+                </div>
+                <h3>Limpieza del Hogar</h3>
+                <p>Detergentes, lejías, limpiadores multiusos, friegasuelos y productos para cada rincón de tu hogar</p>
+            </div>
+            <div class="categoria-card">
+                <div class="categoria-icon">
+                    <i class="fas fa-sink"></i>
+                </div>
+                <h3>Cocina y Vajilla</h3>
+                <p>Lavavajillas, desengrasantes, estropajos, bayetas y todo para mantener tu cocina impecable</p>
+            </div>
+            <div class="categoria-card">
+                <div class="categoria-icon">
+                    <i class="fas fa-toilet"></i>
+                </div>
+                <h3>Baño y Sanitarios</h3>
+                <p>Limpiadores de baño, desinfectantes, ambientadores y productos especializados</p>
+            </div>
+            <div class="categoria-card">
+                <div class="categoria-icon">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <h3>Lavandería</h3>
+                <p>Detergentes para ropa, suavizantes, quitamanchas y productos para el cuidado de tus prendas</p>
+            </div>
+            <div class="categoria-card">
+                <div class="categoria-icon">
+                    <i class="fas fa-pump-soap"></i>
+                </div>
+                <h3>Higiene Personal</h3>
+                <p>Jabones, geles de ducha, champús, pasta de dientes y cuidado personal diario</p>
+            </div>
+            <div class="categoria-card">
+                <div class="categoria-icon">
+                    <i class="fas fa-broom"></i>
+                </div>
+                <h3>Utensilios</h3>
+                <p>Fregonas, escobas, cubos, guantes y accesorios para facilitar la limpieza</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos Destacados -->
+    <section class="productos-destacados" id="productos">
+        <div class="productos-container">
+            <h2 class="section-title">Productos Destacados</h2>
+            <div class="productos-grid">
+                <div class="producto-item">
+                    <i class="fas fa-bottle-droplet"></i>
+                    <h4>Detergente Líquido</h4>
+                    <p>Para todo tipo de ropa</p>
+                    <div class="precio">Desde 2,99€</div>
+                </div>
+                <div class="producto-item">
+                    <i class="fas fa-jug-detergent"></i>
+                    <h4>Friegasuelos</h4>
+                    <p>Limpieza profunda</p>
+                    <div class="precio">Desde 1,99€</div>
+                </div>
+                <div class="producto-item">
+                    <i class="fas fa-spray-can-sparkles"></i>
+                    <h4>Limpiador Multiusos</h4>
+                    <p>Para todas las superficies</p>
+                    <div class="precio">Desde 1,49€</div>
+                </div>
+                <div class="producto-item">
+                    <i class="fas fa-soap"></i>
+                    <h4>Gel de Ducha</h4>
+                    <p>Diferentes aromas</p>
+                    <div class="precio">Desde 1,99€</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section class="sobre-nosotros" id="nosotros">
+        <h2 class="section-title">Sobre Nosotros</h2>
+        <div class="sobre-grid">
+            <div class="sobre-texto">
+                <p>En <strong>Big Bubble</strong> somos tu tienda de confianza en Ceuta para productos de limpieza del hogar y cuidado personal.</p>
+                <p>Ofrecemos una amplia gama de productos de las mejores marcas a precios competitivos, garantizando la calidad que tu hogar y tu familia merecen.</p>
+                <p>Nuestro compromiso es proporcionar productos efectivos que faciliten las tareas del día a día, manteniendo tu hogar limpio, fresco y acogedor.</p>
+                
+                <div class="valores">
+                    <div class="valor-item">
+                        <i class="fas fa-star"></i>
+                        <div>
+                            <h4>Calidad</h4>
+                            <p>Solo productos de confianza</p>
+                        </div>
+                    </div>
+                    <div class="valor-item">
+                        <i class="fas fa-euro-sign"></i>
+                        <div>
+                            <h4>Precio justo</h4>
+                            <p>Las mejores ofertas</p>
+                        </div>
+                    </div>
+                    <div class="valor-item">
+                        <i class="fas fa-handshake"></i>
+                        <div>
+                            <h4>Atención</h4>
+                            <p>Servicio personalizado</p>
+                        </div>
+                    </div>
+                    <div class="valor-item">
+                        <i class="fas fa-leaf"></i>
+                        <div>
+                            <h4>Sostenibilidad</h4>
+                            <p>Productos eco-friendly</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sobre-texto">
+                <p><strong>¿Por qué elegirnos?</strong></p>
+                <p>✓ Amplio surtido de productos</p>
+                <p>✓ Marcas reconocidas y de confianza</p>
+                <p>✓ Precios competitivos todo el año</p>
+                <p>✓ Asesoramiento personalizado</p>
+                <p>✓ Entrega rápida en Ceuta</p>
+                <p>✓ Compra online o visítanos en tienda</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="contacto" id="contacto">
+        <div class="contacto-container">
+            <h2 class="section-title">Contacto y Ubicación</h2>
+            <div class="contacto-grid">
+                <div class="contacto-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p>Escríbenos para consultas, pedidos o información</p>
+                    <a href="https://wa.me/34123456789" target="_blank">+34 123 456 789</a>
+                </div>
+                <div class="contacto-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>Te respondemos en menos de 24 horas</p>
+                    <a href="mailto:info@bigbubble.com">info@bigbubble.com</a>
+                </div>
+                <div class="contacto-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Nuestra Tienda</h3>
+                    <p>Ceuta, España</p>
+                    <p style="margin-top: 1rem; color: #9b59b6; font-weight: bold;">Visítanos en tienda o compra online</p>
+                </div>
+            </div>
+
+            <div class="redes-sociales">
+                <h3>Síguenos en Redes Sociales</h3>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://tiktok.com" target="_blank" title="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>BIG BUBBLE</strong> - Tu tienda de productos de limpieza en Ceuta</p>
+        <p>&copy; 2026 Big Bubble. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- WhatsApp Flotante -->
+    <a href="https://wa.me/34123456789" class="whatsapp-float" target="_blank" title="Contáctanos por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html>
